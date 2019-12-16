@@ -1,4 +1,5 @@
 from Bio.PDB import *
+import os
 
 pdbl = PDBList()
 
@@ -12,12 +13,15 @@ for line in csv_file:
         pdb_id_chain = splited_line[1]
         pdb_id = pdb_id_chain.split("_")[0]
         chain  = pdb_id_chain.split("_")[1]
-        filename = pdb_id + ".pdb"
+        
         print "pdb_id:", pdb_id
-        print "filename:", filename
         pdbl.retrieve_pdb_file(pdb_id)
-        io = PDBIO()
-        io.set_structure(s)
-        io.save(filename)
-     
+        
+        cif_filename = pdb_id + ".cif"
+        print "cif_filename:", cif_filename
+        cif_filename_w_path = pdb_id[1] + pdb_id[2] + "/" + cif_filename
+        command = "phenix.cif_as_pdb " + cif_filename_w_path
+        os.system(command)
+        
+        
 csv_file.close()
