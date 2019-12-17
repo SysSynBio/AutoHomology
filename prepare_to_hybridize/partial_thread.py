@@ -20,14 +20,14 @@ def partial_thread(*args):
     for pdb_file in glob.glob("*.pdb"):
         grishin_file_name = target_fasta_file[:-6] + "_" + pdb_file[:-4] + ".grishin"
         print grishin_file_name
-        run_to_hybridize = open("run_to_hybridize.sh", "w")
+        run_to_hybridize = open("run_to_partially_thread.sh", "w")
         write_this = "partial_thread.default.macosclangrelease -in:file:fasta " + str(target_fasta_file) \
                     + " -in:file:alignment " + str(grishin_file_name) + " -in:file:template_pdb " \
                     + str(pdb_file) + "\n"
         run_to_hybridize.write(write_this)
         run_to_hybridize.close()
         
-        command = "source run_to_hybridize.sh "
+        command = "source run_to_partially_thread.sh "
         os.system(command)
         
         hybridized_pdb_file = pdb_file + ".pdb"

@@ -11,13 +11,13 @@ from util import *
 def run_AutoHomology(target_fasta_file, retrievd_csv):
     current_dir = os.getcwd()
     
-    command = "python ../download_pdb_chain/download_pdb_chain.py " + starting_dir + " " + retrievd_csv
+    command = "python ../prepare_to_hybridize/download_pdb_chain.py " + starting_dir + " " + retrievd_csv
     os.system(command)
     
-    command = "python ../make_grishin_files/make_grishin_files.py " + target_fasta_file
+    command = "python ../prepare_to_hybridize/make_grishin_files.py " + target_fasta_file
     os.system(command)
     
-    command = "python ../partial_thread/partial_thread.py " + target_fasta_file
+    command = "python ../prepare_to_hybridize/partial_thread.py " + target_fasta_file
     os.system(command)
     
 ########### end of def run_AutoHomology(fasta_file, retrievd_csv):
