@@ -68,13 +68,7 @@ def download_pdb_chain(*args):
 if (__name__ == "__main__") :
     total_start_time = time.time()
     args=sys.argv[1:]
-    
-    '''  
-    if len(args) < 1:
-        print "\nPlease provide psi-blasted.csv"
-        print "Usage:         python download_pdb_chain.py <csv file>"
-        print "Example usage: python ZFHADRTG016-Alignment-HitTable.csv"  
-    '''
+
     starting_dir = args[0]
     retrievd_csv = args[1]
 

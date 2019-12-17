@@ -5,7 +5,6 @@ from Bio.pairwise2 import format_alignment
 from Bio.SubsMat import MatrixInfo as matlist
 matrix = matlist.blosum62
 
-
 def make_grishin_files(*args):
     target_fasta_file = args[0]
     
@@ -30,7 +29,6 @@ def make_grishin_files(*args):
             print "query_sequence:", query_sequence
         
             for a in pairwise2.align.globaldx (target_sequence, query_sequence, matrix):
-                
                 first_aligned = ''
                 second_aligned = ''
                 first_aligned_finished = False
@@ -58,11 +56,9 @@ def make_grishin_files(*args):
         
         target_fasta_file = os.path.basename(target_fasta_file)
         grishin_file_name = target_fasta_file[:-6] + "_" + query_fasta_file[:-6] + ".grishin"
-        print grishin_file_name
         
         f_out = open(grishin_file_name, 'w')
         write_this = "## " + target_fasta_file[:-6] + " " + query_fasta_file[:-6] + "\n"
-        print write_this
         f_out.write(write_this)
         f_out.write("#\n")
         f_out.write("scores from program: 0\n")

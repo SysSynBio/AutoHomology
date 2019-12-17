@@ -14,12 +14,14 @@ os.chdir(working_folder)
 
 def run_AutoHomology(target_fasta_file, retrievd_csv):
     current_dir = os.getcwd()
-    print current_dir
     
     command = "python ../download_pdb_chain/download_pdb_chain.py " + starting_dir + " " + retrievd_csv
     os.system(command)
     
     command = "python ../make_grishin_files/make_grishin_files.py " + target_fasta_file
+    os.system(command)
+    
+    command = "python ../prepare_to_hybridize/prepare_to_hybridize.py " + target_fasta_file
     os.system(command)
     
 ########### end of def run_AutoHomology(fasta_file, retrievd_csv):

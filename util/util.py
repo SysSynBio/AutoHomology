@@ -1,5 +1,17 @@
-import os
+import glob, os, shutil
+ 
+def moveAllFilesinDir(srcDir, dstDir):
+    #print "Check if both the are directories."
+    if os.path.isdir(srcDir) and os.path.isdir(dstDir) :
+        #print "Iterate over all the files in source directory"
+        for filePath in glob.glob(srcDir + '/*'):
+            # Move each file to destination Directory
+            shutil.move(filePath, dstDir);
+    else:
+        print("srcDir & dstDir should be Directories")
+########## end of def moveAllFilesinDir(srcDir, dstDir)
 
+        
 def show_header(title):
     print "\n"
     multiply_asterisk = 95
