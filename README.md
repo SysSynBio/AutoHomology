@@ -12,4 +12,6 @@ https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE=Proteins&PROGRAM=blastp&RU
 2. Download Hit Table (CSV)
 For example, ZFHADRTG016-Alignment-HitTable.csv
 
+3. python run_me.py <fasta> <csv>
 
+4. Upload input_for_clustal_omega.fasta at https://www.ebi.ac.uk/Tools/msa/clustalo

@@ -1,14 +1,35 @@
-import os, sys, time
+import glob, os, sys, time
 
 starting_dir = os.getcwd()
 util_path = starting_dir + "/util/"
 sys.path.insert(0, util_path)
 from util import *
 
-def run_AutoHomology(fasta_file, retrievd_csv):
+def run_AutoHomology(target_fasta_file, retrievd_csv):
     command = "python download_pdb_chain/download_pdb_chain.py " + retrievd_csv
     os.system(command)
+    
+    if (os.path.isfile("input_for_clustal_omega.fasta") == True):
+        os.remove("input_for_clustal_omega.fasta")
+    
+    for pdb_file in glob.glob("*.pdb"):
+        command = "perl util/single_pdb2fasta.pl " + pdb_file
+        print command
+        os.system(command)
+        
+        command = "cat " + pdb_file[:-4] + ".fasta >> input_for_clustal_omega.fasta"
+        print command
+        os.system(command)
+    
+    command = "cat " + target_fasta_file + " >> input_for_clustal_omega.fasta"
+    print command
+    os.system(command)
+    
+    command = "echo " " >> input_for_clustal_omega.fasta"
+    print command
+    os.system(command)
 ########### end of def run_AutoHomology(fasta_file, retrievd_csv):
+
 
 
 if (__name__ == "__main__") :
@@ -23,7 +44,6 @@ if (__name__ == "__main__") :
   else:        
     fasta_file = os.path.join(starting_dir, args[0])
     retrievd_csv = os.path.join(starting_dir, args[1])
-    
     run_AutoHomology(fasta_file, retrievd_csv)
   
   total_end_time = time.time()

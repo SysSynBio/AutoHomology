@@ -79,5 +79,5 @@ if (__name__ == "__main__") :
         download_pdb_chain(retrievd_csv)
     
     total_end_time = time.time()
-    process = "\nTotal pdb download and parsing"
+    process = "\npdb download and parsing"
     print show_time(process, total_start_time, total_end_time)
