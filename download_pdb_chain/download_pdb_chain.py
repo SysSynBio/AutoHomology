@@ -4,7 +4,7 @@ parser = PDBParser(PERMISSIVE=1)
 
 import gzip, os, shutil, sys, time
 from os import popen, system
-from os.path import exists, basename
+from os.path import exists
 
 io = PDBIO()
 
@@ -26,10 +26,8 @@ def download_pdb(pdb_id, dest_dir):
 
 
 def download_pdb_chain(*args):
-    
     starting_dir = args[0]
-    retrievd_csv = args[1]
-    
+    retrievd_csv = args[1]    
     csv_file = open(retrievd_csv,"r")
     i = 0
     for line in csv_file:

@@ -6,11 +6,7 @@ util_path = starting_dir + "/util/"
 sys.path.insert(0, util_path)
 from util import *
 
-today = datetime.now()
 
-working_folder = today.strftime('%Y%m%d') + "_" + str(today.hour) + str(today.minute) + str(today.second)
-os.mkdir(working_folder)
-os.chdir(working_folder)
 
 def run_AutoHomology(target_fasta_file, retrievd_csv):
     current_dir = os.getcwd()
@@ -40,6 +36,12 @@ if (__name__ == "__main__") :
   else:        
     fasta_file = os.path.join(starting_dir, args[0])
     retrievd_csv = os.path.join(starting_dir, args[1])
+    
+    today = datetime.now()
+    working_folder = today.strftime('%Y%m%d') + "_" + str(today.hour) + str(today.minute) + str(today.second)
+    os.mkdir(working_folder)
+    os.chdir(working_folder)
+
     run_AutoHomology(fasta_file, retrievd_csv)
   
   total_end_time = time.time()
