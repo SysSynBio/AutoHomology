@@ -1,33 +1,27 @@
 import glob, os, sys, time
+from datetime import datetime
 
 starting_dir = os.getcwd()
 util_path = starting_dir + "/util/"
 sys.path.insert(0, util_path)
 from util import *
 
+today = datetime.now()
+
+working_folder = today.strftime('%Y%m%d') + "_" + str(today.hour) + str(today.minute) + str(today.second)
+os.mkdir(working_folder)
+os.chdir(working_folder)
+
 def run_AutoHomology(target_fasta_file, retrievd_csv):
-    command = "python download_pdb_chain/download_pdb_chain.py " + retrievd_csv
+    current_dir = os.getcwd()
+    print current_dir
+    
+    command = "python ../download_pdb_chain/download_pdb_chain.py " + starting_dir + " " + retrievd_csv
     os.system(command)
     
-    if (os.path.isfile("input_for_clustal_omega.fasta") == True):
-        os.remove("input_for_clustal_omega.fasta")
-    
-    for pdb_file in glob.glob("*.pdb"):
-        command = "perl util/single_pdb2fasta.pl " + pdb_file
-        print command
-        os.system(command)
-        
-        command = "cat " + pdb_file[:-4] + ".fasta >> input_for_clustal_omega.fasta"
-        print command
-        os.system(command)
-    
-    command = "cat " + target_fasta_file + " >> input_for_clustal_omega.fasta"
-    print command
+    command = "python ../make_grishin_files/make_grishin_files.py " + target_fasta_file
     os.system(command)
     
-    command = "echo " " >> input_for_clustal_omega.fasta"
-    print command
-    os.system(command)
 ########### end of def run_AutoHomology(fasta_file, retrievd_csv):
 
 

@@ -6,11 +6,6 @@ import gzip, os, shutil, sys, time
 from os import popen, system
 from os.path import exists, basename
 
-starting_dir = os.getcwd()
-util_path = starting_dir + "/util/"
-sys.path.insert(0, util_path)
-from util import *
-
 io = PDBIO()
 
 remote_host = ''
@@ -30,7 +25,11 @@ def download_pdb(pdb_id, dest_dir):
 ############ end of def download_pdb(pdb_id, dest_dir):
 
 
-def download_pdb_chain(retrievd_csv):
+def download_pdb_chain(*args):
+    
+    starting_dir = args[0]
+    retrievd_csv = args[1]
+    
     csv_file = open(retrievd_csv,"r")
     i = 0
     for line in csv_file:
@@ -69,14 +68,21 @@ def download_pdb_chain(retrievd_csv):
 if (__name__ == "__main__") :
     total_start_time = time.time()
     args=sys.argv[1:]
-      
+    
+    '''  
     if len(args) < 1:
         print "\nPlease provide psi-blasted.csv"
         print "Usage:         python download_pdb_chain.py <csv file>"
         print "Example usage: python ZFHADRTG016-Alignment-HitTable.csv"  
-    else:
-        retrievd_csv = args[0]
-        download_pdb_chain(retrievd_csv)
+    '''
+    starting_dir = args[0]
+    retrievd_csv = args[1]
+
+    util_path = starting_dir + "/util/"
+    sys.path.insert(0, util_path)
+    from util import *
+    
+    download_pdb_chain(starting_dir, retrievd_csv)
     
     total_end_time = time.time()
     process = "\npdb download and parsing"
