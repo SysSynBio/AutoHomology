@@ -58,7 +58,8 @@ def make_grishin_files(*args):
         grishin_file_name = target_fasta_file[:-6] + "_" + query_fasta_file[:-6] + ".grishin"
         
         f_out = open(grishin_file_name, 'w')
-        write_this = "## " + target_fasta_file[:-6] + " " + query_fasta_file[:-6] + "\n"
+        write_this = "## " + target_fasta_file[:-6] + " " + query_fasta_file[:-6] + ".pdb\n"
+        # without .pdb, rosetta_hybridize seems not running
         f_out.write(write_this)
         f_out.write("#\n")
         f_out.write("scores from program: 0\n")
