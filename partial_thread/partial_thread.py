@@ -4,7 +4,7 @@ util_path = "../util/"
 sys.path.insert(0, util_path)
 from util import *
 
-def prepare_to_hybridize(*args):
+def partial_thread(*args):
     target_fasta_file = args[0]
     
     os.mkdir("2_threading")
@@ -31,9 +31,9 @@ def prepare_to_hybridize(*args):
         os.system(command)
         
         hybridized_pdb_file = pdb_file + ".pdb"
-        renamed_hybridized_pdb_file = grishin_file_name[:-8] + "_hybridized.pdb"
-        shutil.copy(hybridized_pdb_file, renamed_hybridized_pdb_file)
-############### end of def prepare_to_hybridize(*args):
+        renamed_hybridized_pdb_file = grishin_file_name[:-8] + "_partial_threaded.pdb"
+        shutil.move(hybridized_pdb_file, renamed_hybridized_pdb_file)
+############### end of def partial_thread(*args):
 
 
 if (__name__ == "__main__") :
@@ -41,5 +41,5 @@ if (__name__ == "__main__") :
     print args
     target_fasta_file = args[0]
     
-    prepare_to_hybridize(target_fasta_file)
+    partial_thread(target_fasta_file)
     

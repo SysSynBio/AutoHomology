@@ -17,7 +17,7 @@ def run_AutoHomology(target_fasta_file, retrievd_csv):
     command = "python ../make_grishin_files/make_grishin_files.py " + target_fasta_file
     os.system(command)
     
-    command = "python ../prepare_to_hybridize/prepare_to_hybridize.py " + target_fasta_file
+    command = "python ../partial_thread/partial_thread.py " + target_fasta_file
     os.system(command)
     
 ########### end of def run_AutoHomology(fasta_file, retrievd_csv):
