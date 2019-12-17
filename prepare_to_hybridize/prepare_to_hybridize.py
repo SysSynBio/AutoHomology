@@ -29,6 +29,10 @@ def prepare_to_hybridize(*args):
         
         command = "source run_to_hybridize.sh "
         os.system(command)
+        
+        hybridized_pdb_file = pdb_file + ".pdb"
+        renamed_hybridized_pdb_file = grishin_file_name[:-8] + "_hybridized.pdb"
+        shutil.copy(hybridized_pdb_file, renamed_hybridized_pdb_file)
 ############### end of def prepare_to_hybridize(*args):
 
 
